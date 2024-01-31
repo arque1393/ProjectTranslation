@@ -12,7 +12,10 @@ def translate_en_to_gu(article_en : str = ""):
             **model_inputs,
             forced_bos_token_id=tokenizer.lang_code_to_id["gu_IN"]
         )
-        return tokenizer.batch_decode(generated_tokens, skip_special_tokens=True)
+        
+        text = tokenizer.batch_decode(generated_tokens, skip_special_tokens=True)
+        print(text)
+        return text
     except Exception as e :
         print(e)
     
