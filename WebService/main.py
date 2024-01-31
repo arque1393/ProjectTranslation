@@ -1,17 +1,17 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from transformers import MBartForConditionalGeneration, MBart50TokenizerFast
 
-model = MBartForConditionalGeneration.from_pretrained("SnypzZz/Llama2-13b-Language-translate")
-tokenizer = MBart50TokenizerFast.from_pretrained("SnypzZz/Llama2-13b-Language-translate", src_lang="en_XX")
+article_en = 'Good Evening Guys. I like your approach to solve this. '
+model = MBartForConditionalGeneration.from_pretrained("facebook/mbart-large-50-many-to-many-mmt")
+tokenizer = MBart50TokenizerFast.from_pretrained("facebook/mbart-large-50-many-to-many-mmt")
+tokenizer.src_lang = "en_IN"
 
-
-def translate_en_to_gu(article_en : str = ""):
+def translate_en_to_gu(article_en : str):
     try:
-        model_inputs = tokenizer(article_en, return_tensors="pt")
+        encoded_en = tokenizer(article_en, return_tensors="pt")
         generated_tokens = model.generate(
-            **model_inputs,
-            forced_bos_token_id=tokenizer.lang_code_to_id["gu_IN"]
-        )
+            **encoded_en,
+            forced_bos_token_id=tokenizer.lang_code_to_id["gu_IN"])
         
         text = tokenizer.batch_decode(generated_tokens, skip_special_tokens=True)
         print(text)
