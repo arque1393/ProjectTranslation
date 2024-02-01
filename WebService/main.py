@@ -2,8 +2,8 @@ from fastapi import FastAPI, HTTPException, Query
 from transformers import MBartForConditionalGeneration, MBart50TokenizerFast
 
 # article_en = 'Good Evening Guys. I like your approach to solve this. '
-model = MBartForConditionalGeneration.from_pretrained("facebook/mbart-large-50-many-to-many-mmt")
-tokenizer = MBart50TokenizerFast.from_pretrained("facebook/mbart-large-50-many-to-many-mmt")
+model = MBartForConditionalGeneration.from_pretrained("aroot/eng-guj-simcse_central_ssblu")
+tokenizer = MBart50TokenizerFast.from_pretrained("aroot/eng-guj-simcse_central_ssblu")
 tokenizer.src_lang = "en_IN"
 
 def translate_en_to_gu(article_en : str):
