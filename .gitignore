@@ -1,3 +1,5 @@
 .googleTranslator/
+.env/
 /TODO
 __pycache__/
+cache/

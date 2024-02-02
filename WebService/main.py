@@ -1,34 +1,21 @@
 from fastapi import FastAPI, HTTPException, Query
-from transformers import MBartForConditionalGeneration, MBart50TokenizerFast
-
-# article_en = 'Good Evening Guys. I like your approach to solve this. '
-model = MBartForConditionalGeneration.from_pretrained("aroot/eng-guj-simcse_central_ssblu")
-tokenizer = MBart50TokenizerFast.from_pretrained("aroot/eng-guj-simcse_central_ssblu")
-tokenizer.src_lang = "en_IN"
-
-def translate_en_to_gu(article_en : str):
-    try:
-        encoded_en = tokenizer(article_en, return_tensors="pt")
-        generated_tokens = model.generate(
-            **encoded_en,
-            forced_bos_token_id=tokenizer.lang_code_to_id["gu_IN"])
-        
-        text = tokenizer.batch_decode(generated_tokens, skip_special_tokens=True)
-        print(text)
-        return text
-    except Exception as e :
-        print(e)
-    
-
-
-
-
+from translation import translate_en_to_gu,g_translate_en_to_gu
+from _model import Article
 app = FastAPI()
 
 @app.post("/api/translate")
-def translator_api(article:str):
+def translator_api(article:Article):
     try: 
-        article_gu = translate_en_to_gu(article)
+        article_gu = translate_en_to_gu(article.article )
+        return {"article_gu":article_gu}
+    except Exception as e: 
+        raise HTTPException(e)
+
+@app.post("/api/g_translate")
+def translator_api(article:Article):
+    try: 
+        article_gu = g_translate_en_to_gu(article.article)
+        
         return {"article_gu":article_gu}
     except Exception as e: 
         raise HTTPException(e)
