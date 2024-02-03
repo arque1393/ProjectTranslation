@@ -19,6 +19,8 @@
 #         print(e)
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 def translate_en_to_gu(article_en : str):
+    r'''This function is implemented by Open source model 'rooftopcoder/mT5_base_English_Gujrati'  by hugging face 
+Take input as English Sentence and return Gujhrati Text in unicode string  format.'''
     try:
         model_name = "rooftopcoder/mT5_base_English_Gujrati" # Example model for English to German translation
         model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
@@ -40,6 +42,8 @@ def translate_en_to_gu(article_en : str):
 from googletrans import Translator
 
 def g_translate_en_to_gu(article_en:str):
+    r'''This function is implemented by Google API by Googletrans python module 
+Take input as English Sentence and return Gujhrati Text in unicode string  format.'''
     translator = Translator()
     try :
         translation = translator.translate(article_en, dest='gu')
