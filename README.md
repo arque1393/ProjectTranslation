@@ -33,3 +33,14 @@ and It also contains a ipython notebook file that is my experiment hub.
 
 ### Future Work 
 If needed We can further go for the fine Tunning our model with Legal Gujrati language and terms.
+
+### Runing App 
+```bash
+git clone https://github.com/arque1393/ProjectTranslation.git
+python -m venv .env
+source .env/bin/activate
+pip install -r requirments.txt
+cd  ProjectTranslation/WebService
+uvicorn main:app
+
+```
