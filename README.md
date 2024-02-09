@@ -28,7 +28,7 @@ Hugging face provide  a open source model hub where so many pre-build models are
 11. aroot/eng-guj-simcse_central_usbbu
 
 ## About Repository 
-Project Translation Repository contains a folder WebAPI that is the project root folder Fast API app 
+Project Translation Repository contains a folder WebAPI which is the project root folder Fast API app 
 and It also contains a ipython notebook file that is my experiment hub. 
 
 ### Future Work 
@@ -47,5 +47,5 @@ uvicorn main:app
 
 
 
-### Video Demonstrartion link 
+### Video Demonstrarion link 
 https://1drv.ms/u/s!Aj2Nbw_0FL8Hia4Xqc5OBVZSYdpgPQ?e=kebcy0
